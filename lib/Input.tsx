@@ -19,6 +19,7 @@ type InputProps = {
   style?: StyleProp<ViewStyle>;
   backspaceIcon?: JSX.Element;
   hideIcon?: JSX.Element;
+  hasDecimal?: boolean;
   onWillHide?: () => void;
   onDidHide?: () => void;
   onWillShow?: () => void;
@@ -104,6 +105,7 @@ export default class Input extends React.Component<InputProps> {
         <View style={styles.input}>
           <View style={styles.pad}>
             {inputs.map((value, index) => {
+              if (!this.props.hasDecimal && value === '.') return;
               return (
                 <TouchableOpacity
                   key={index}
